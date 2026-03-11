@@ -6,3 +6,18 @@
  * Create a select statement that lists the titles of all tables with the 'Trailers' special_feature.
  * Inner join the queries above.
  */
+
+SELECT bts.title
+FROM (
+    SELECT title, film_id
+    FROM film
+    CROSS JOIN unnest(special_features) as special_feature
+    WHERE special_feature = 'Behind the Scenes'
+) as bts
+INNER JOIN (
+    SELECT title, film_id
+    FROM film
+    CROSS JOIN unnest(special_features) as special_feature
+    WHERE special_feature = 'Trailers'
+) as t USING (film_id)
+ORDER BY bts.title;
