@@ -13,5 +13,5 @@ WHERE rating in (
     FROM film
     GROUP BY rating
     ORDER BY count(*) DESC
-    LMIT 2)
+    LIMIT 2)
 ORDER BY title;
